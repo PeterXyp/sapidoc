@@ -1,0 +1,4 @@
+sapidoc
+=======
+
+xml idoc binding

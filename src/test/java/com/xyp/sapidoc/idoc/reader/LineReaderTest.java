@@ -4,7 +4,6 @@ import com.xyp.sapidoc.idoc.enumeration.TagEnum;
 import com.xyp.sapidoc.idoc.util.ResourceUtil;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.After;
@@ -59,30 +58,16 @@ public class LineReaderTest {
     }
 
     /**
-     * Test of close method, of class LineReader.
-     */
-    @Test
-    public void testClose() {
-        System.out.println("close");
-        reader.close();
-    }
-
-    /**
      * Test of getContent method, of class LineReader.
      */
     @Test
-    public void testGetContent() {
-        List<String> result = reader.getContent();
+    public void testReadContent() {
+        List<String> result = reader.readContent();
+        List<Integer> lineNumbers = reader.getLineNumbers();
+        List<String> lineTags = reader.getLineTags();
         assertEquals(5809, result.size());
-    }
-
-    /**
-     * Test of getTagLineNumberMap method, of class LineReader.
-     */
-    @Test
-    public void testGetTagLineNumberMap() {
-        System.out.println("getTagLineNumberMap");
-        Map<Integer, String> result = reader.getTags();
-        assertEquals(270, result.size());
+        assertEquals(270, lineNumbers.size());
+        assertEquals(270, lineTags.size());
+        reader.findTag(TagEnum.GROUP, 1);
     }
 }

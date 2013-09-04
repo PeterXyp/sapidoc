@@ -2,7 +2,6 @@ package com.xyp.sapidoc.idoc.reader;
 
 import com.xyp.sapidoc.idoc.enumeration.TagEnum;
 import com.xyp.sapidoc.idoc.util.PathUtil;
-import com.xyp.sapidoc.idoc.util.ResourceUtil;
 import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,12 +19,9 @@ import java.util.StringTokenizer;
  */
 public class LineReader {
 
-    /**
-     * line number - line value line number starts from 1
-     */
-    private List<String> content = new ArrayList<String>();
-    private List<Integer> lineNumbers = new ArrayList<Integer>();
-    private List<String> lineTags = new ArrayList<String>();
+    private List<Line> content = new ArrayList<Line>();
+    private List<Line> structureLine = new ArrayList<Line>();
+    private Set<String> allStructureTags = TagEnum.getAllTags();
 
     public LineReader(InputStream is) throws IOException {
         this(new InputStreamReader(is));
@@ -33,104 +29,123 @@ public class LineReader {
 
     public LineReader(Reader reader) throws IOException {
         BufferedReader br = new BufferedReader(reader);
-        String line = null;
-        int lineNumber = 0;
-        while ((line = br.readLine()) != null) {
+        String lineStr = null;
+        int lineNumber = 1;
+        while ((lineStr = br.readLine()) != null) {
+            Line line = parseLine(lineStr, lineNumber++);
             content.add(line);
-            String lineTag = getLineTag(line);
-            if (lineTag != null) {
-                lineTags.add(lineTag);
-                lineNumbers.add(lineNumber);
-            }
-            lineNumber++;
         }
         br.close();
     }
 
-    private String getLineTag(String line) {
-        if ("".equals(line)) {
-            return null;
+    private Line parseLine(String lineStr, int lineNumber) {
+        if ("".equals(lineStr)) {
+            return new Line(lineNumber);
         }
-        String lineTrim = line.trim();
-        StringTokenizer st = new StringTokenizer(lineTrim);
+        StringTokenizer st = new StringTokenizer(lineStr);
         String lineTag = st.nextToken();
-
-        Set<String> allTags = TagEnum.getAllTags();
-        if (allTags.contains(lineTag)) {
-            return lineTag;
+        String lineValue = "";
+        while (st.hasMoreTokens()) {
+            lineValue += (st.nextToken() + " ");
         }
-        return null;
+        if (!"".equals(lineValue)) {
+            lineValue = lineValue.substring(0, lineValue.length() - 1);
+        }
+        Line line = new Line(lineNumber, lineTag, lineValue);
+        if (allStructureTags.contains(lineTag)) {
+            structureLine.add(line);
+        }
+        return line;
     }
 
-    public List<String> readTagContent(TagEnum tag) {
-        String tagBegin = tag.getTagBegin();
-        String tagEnd = tag.getTagEnd();
+    public void generateStructure() throws IOException {
+        FileWriter fw = new FileWriter(PathUtil.getResourceDir() + "ORDERS05_structure_1.txt");
+        String formatter = "%04d     %-30s %15s\n";
+        for (Line line : structureLine) {
+            int lineNumber = line.getLineNumber();
+            String lineTag = line.getLineTag();
+            String lineValue = line.getLineValue() == null ? "" : line.getLineValue();
+            String lineStr = String.format(formatter, lineNumber, lineTag, lineValue);
+            fw.write(lineStr);
+        }
+        fw.flush();
+        fw.close();
+    }
+
+    public List<Line> readTagContent(TagEnum tag) {
+        Line[] result = findTag(tag, 1);
+        Line beginLine = result[0];
+        Line endLine = result[1];
+        int fromIndex = beginLine.getLineNumber() - 1;
+        int toIndex = endLine.getLineNumber();
+        return content.subList(fromIndex, toIndex);
+    }
+
+    public Line[] findTag(TagEnum tag, int fromLineNumber) {
+        Line fromLine = findLine(fromLineNumber);
+        int fromIndex = structureLine.indexOf(fromLine);
+        int toIndex = structureLine.size();
+        Line beginLine = null;
+        Line endLine = null;
+        Line tempEndLine = null;
         int beginIndex = 0;
-        int endIndex = 0;
-        int tempEndIndex;
-        for (int i = 0; i < lineTags.size(); i++) {
-            if (lineTags.get(i).equals(tagBegin)) {
+        int tempEndIndex = 0;
+        int nestedTags = 0;
+        for (int i = fromIndex; i < toIndex; i++) {
+            Line temp = structureLine.get(i);
+            if (temp.getLineTag().equals(tag.getTagBegin())) {
+                beginLine = temp;
                 beginIndex = i;
-                for (int j = beginIndex + 1; j < lineTags.size(); j++) {
-                    if (lineTags.get(j).equals(tagEnd)) {
-                        tempEndIndex = j;
-                    }
+                break;
+            }
+        }
+        for (int j = beginIndex; j < toIndex; j++) {
+            Line temp = structureLine.get(j);
+            if (temp.getLineTag().equals(tag.getTagEnd())) {
+                tempEndLine = temp;
+                tempEndIndex = j;
+                break;
+            }
+        }
+        for (int k = beginIndex + 1; k < tempEndIndex; k++) {
+            Line temp = structureLine.get(k);
+            if (temp.getLineTag().equals(tag.getTagBegin())) {
+                nestedTags++;
+            }
+        }
+        if (nestedTags == 0) {
+            endLine = tempEndLine;
+        } else {
+            for (int m = tempEndIndex + 1; m < toIndex; m++) {
+                Line temp = structureLine.get(m);
+                if (temp.getLineTag().equals(tag.getTagBegin())) {
+                    nestedTags++;
                 }
-            }
-        }
-        return null;
-    }
-
-    public void findTag(TagEnum tag, int fromIndex) {
-        List<String> tempLineTags = lineTags.subList(fromIndex, lineTags.size());
-        int beginIndex = tempLineTags.indexOf(tag.getTagBegin());
-        int tempEndIndex = tempLineTags.indexOf(tag.getTagEnd());
-        int endIndex = tempEndIndex;
-        int nestTagNum = 0;
-        for (int i = beginIndex + 1; i < tempEndIndex; i++) {
-            if (tempLineTags.get(i).equals(tag.getTagBegin())) {
-                nestTagNum++;
-            }
-        }
-        if (nestTagNum != 0) {
-            for (int i = tempEndIndex + 1; i < tempLineTags.size(); i++) {
-                if (tempLineTags.get(i).equals(tag.getTagEnd())) {
-                    nestTagNum--;
-                    if (nestTagNum == 0) {
-                        endIndex = i;
+                if (temp.getLineTag().equals(tag.getTagEnd())) {
+                    nestedTags--;
+                    if (nestedTags == 0) {
+                        endLine = temp;
                         break;
                     }
                 }
             }
         }
-
-        System.out.println(lineNumbers.get(beginIndex));
-        System.out.println(lineNumbers.get(endIndex));
+        Line[] result = new Line[2];
+        result[0] = beginLine;
+        result[1] = endLine;
+        return result;
     }
 
-    public List<String> readContent() {
+    private Line findLine(int fromLineNumber) {
+        for (Line line : structureLine) {
+            if (line.getLineNumber() == fromLineNumber) {
+                return line;
+            }
+        }
+        return null;
+    }
+
+    public List<Line> readContent() {
         return content;
     }
-
-    public List<Integer> getLineNumbers() {
-        return lineNumbers;
-    }
-
-    public List<String> getLineTags() {
-        return lineTags;
-    }
-//    public static void main(String[] args) throws IOException {
-//        LineReader reader = new LineReader(ResourceUtil.loadClasspathResource("ORDERS05.txt"));
-//        FileWriter fw = new FileWriter(PathUtil.getResourceDir() + "ORDERS05_structure.txt");
-//        int len = reader.getLineNumbers().size();
-//        List<Integer> lineNumbers = reader.getLineNumbers();
-//        List<String> lineTags = reader.getLineTags();
-//        for (int i = 0; i < len; i++) {
-//            int lineNumber = lineNumbers.get(i);
-//            String lineTag = lineTags.get(i);
-//            fw.write(String.format("%1$04d", lineNumber) + "    " + lineTag + "\n");
-//        }
-//        fw.flush();
-//        fw.close();
-//    }
 }

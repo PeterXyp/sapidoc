@@ -46,28 +46,47 @@ public class LineReaderTest {
     }
 
     /**
-     * Test of readTagContent method, of class LineReader.
-     */
-//    @Test
-    public void testReadTagContent() {
-        System.out.println("readTagContent");
-        TagEnum tag = null;
-        List expResult = null;
-        List result = reader.readTagContent(tag);
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of getContent method, of class LineReader.
      */
-    @Test
+//    @Test
     public void testReadContent() {
-        List<String> result = reader.readContent();
-        List<Integer> lineNumbers = reader.getLineNumbers();
-        List<String> lineTags = reader.getLineTags();
-        assertEquals(5809, result.size());
-        assertEquals(270, lineNumbers.size());
-        assertEquals(270, lineTags.size());
-        reader.findTag(TagEnum.GROUP, 1);
+    }
+
+    @Test
+    public void testFindTag() {
+        findTag(TagEnum.IDOC, 1, 549, 5808);
+        findTag(TagEnum.RECORD_SECTION, 1, 1, 547);
+//        findTag(TagEnum.GROUP, 0, 1025, 1416);//G1
+//        findTag(TagEnum.GROUP, 66, 1629, 1707);//G2
+        findTag(TagEnum.GROUP, 1709, 1709, 4569);//G3
+        findTag(TagEnum.GROUP, 2429, 2429, 2595);//G4
+//        findTag(TagEnum.GROUP, 115, 2659, 3050);//G5
+//        findTag(TagEnum.GROUP, 129, 3124, 3271);//G6
+//        findTag(TagEnum.GROUP, 134, 3177, 3270);//G7
+//        findTag(TagEnum.GROUP, 157, 3387, 3449);//G8
+//        findTag(TagEnum.GROUP, 167, 3450, 4567);//G9
+//        findTag(TagEnum.GROUP, 212, 4520, 4566);//G10
+//        findTag(TagEnum.GROUP, 224, 4569, 4966);//G11
+//        findTag(TagEnum.GROUP, 246, 4967, 5765);//G12
+    }
+
+    public void findTag(TagEnum tag, int fromIndex, int exp1, int exp2) {
+        Line[] result = reader.findTag(tag, fromIndex);
+        System.out.println("s"+result[0]);
+        System.out.println("e"+result[1]);
+        assertEquals(exp1, result[0].getLineNumber());
+        assertEquals(exp2, result[1].getLineNumber());
+    }
+    
+//    @Test
+    public void testGenerateStructure() throws IOException{
+        reader.generateStructure();
+    }
+    @Test
+    public void testReadTagContent(){
+        List<Line> lines = reader.readTagContent(TagEnum.CONTROL_RECORD);
+        for (Line line : lines) {
+            System.out.println(line);
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.xyp.sapidoc.idoc.writer;
 import com.xyp.sapidoc.idoc.annotation.IdocField;
 import com.xyp.sapidoc.idoc.attribute.IdocFieldProperty;
 import com.xyp.sapidoc.idoc.enumeration.TagEnum;
+import com.xyp.sapidoc.idoc.reader.IDoc;
 import com.xyp.sapidoc.idoc.reader.Line;
 import com.xyp.sapidoc.idoc.reader.LineReader;
 import com.xyp.sapidoc.idoc.util.PathUtil;
@@ -21,6 +22,13 @@ import java.util.Set;
 public class ClassGenerator {
 
     private LineReader reader;
+    private String pkgName = "com.xyp.sapidoc.idoc.model.gen";
+    private String targetDir = PathUtil.getJavaSrcDir();
+    private static Set<String> imports = new HashSet<String>();
+
+    static {
+        imports.add(IdocField.class.getName());
+    }
 
     public ClassGenerator(LineReader reader) {
         this.reader = reader;
@@ -32,11 +40,6 @@ public class ClassGenerator {
     }
 
     private void parseRecordSection() throws Exception {
-        String pkgName = "com.xyp.sapidoc.idoc.model";
-        String targetDir = PathUtil.getJavaSrcDir();
-        Set<String> imports = new HashSet<String>();
-        imports.add(IdocField.class.getName());
-
         List<IdocFieldProperty> fields1 = parseControlRecord();
         writeClass("EDI_DC40", pkgName, targetDir, fields1, imports);
         List<IdocFieldProperty> fields2 = parseDataRecord();
@@ -59,6 +62,10 @@ public class ClassGenerator {
 
     private List<IdocFieldProperty> parseIdocFields(TagEnum tag) throws Exception {
         List<Line> lines = reader.readTagContent(tag);
+        return parseIdocFields(lines);
+    }
+
+    private List<IdocFieldProperty> parseIdocFields(List<Line> lines) throws Exception {
         List<IdocFieldProperty> fields = new ArrayList<IdocFieldProperty>();
         IdocFieldProperty field = new IdocFieldProperty();
         for (Line line : lines) {
@@ -87,7 +94,40 @@ public class ClassGenerator {
         classWriter.writerClass();
     }
 
-    private void parseSegmentSection() {
+    private void parseSegmentSection() throws Exception {
+        List<IDoc> idocs = parseIdoc();
+        for (IDoc idoc : idocs) {
+            parseSegments(idoc);
+//            parseGroups(idoc);
+        }
+    }
+
+    private List<IDoc> parseIdoc() {
+        List<IDoc> idocs = new ArrayList<IDoc>();
+        List<Line[]> results = reader.findTags(TagEnum.IDOC);
+        for (Line[] line : results) {
+            Line from = line[0];
+            Line to = line[1];
+            IDoc idoc = new IDoc(from.getLineValue(), from, to);
+            idocs.add(idoc);
+        }
+        return idocs;
+    }
+
+    private void parseSegments(IDoc idoc) throws Exception {
+        int fromLine = idoc.getStartLine().getLineNumber();
+        int endLine = idoc.getEndLine().getLineNumber();
+        List<Line[]> segments = reader.findTags(TagEnum.SEGMENT, fromLine, endLine);
+        int i = 0;
+        for (Line[] segment : segments) {
+            Line[] fields = reader.findTag(TagEnum.FIELDS, segment[0].getLineNumber(), segment[1].getLineNumber());
+            List<Line> fieldsContent = reader.readLine(fields[0], fields[1]);
+            List<IdocFieldProperty> _fields = parseIdocFields(fieldsContent);
+            String className = reader.readLine(new Line(segment[0].getLineNumber() + 1)).getLineValue();
+            writeClass(className, pkgName, targetDir, _fields, imports);
+            i++;
+        }
+        System.out.println(i);
     }
 
     public static void main(String[] args) throws Exception {

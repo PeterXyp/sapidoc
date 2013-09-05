@@ -5764,7 +5764,7 @@ BEGIN_SEGMENT_SECTION
         END_FIELDS
       END_SEGMENT
     END_GROUP
-    BEGIN_SEGMENT           E2EDS01
+               E2EDS01
       SEGMENTTYPE         E1EDS01
       QUALIFIED
       LEVEL               02

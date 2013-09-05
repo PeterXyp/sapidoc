@@ -8,7 +8,7 @@ import com.xyp.sapidoc.idoc.enumeration.TagEnum;
  */
 public class Line {
 
-    private int lineNumber;
+    private int lineNumber;//from 1
     private String lineTag;
     private String lineValue;
 

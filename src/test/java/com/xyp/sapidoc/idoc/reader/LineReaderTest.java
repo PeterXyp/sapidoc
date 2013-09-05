@@ -20,6 +20,7 @@ import static org.junit.Assert.*;
 public class LineReaderTest {
 
     private LineReader reader;
+    private int totalLineNumber;
 
     public LineReaderTest() {
     }
@@ -36,6 +37,7 @@ public class LineReaderTest {
     public void setUp() {
         try {
             reader = new LineReader(ResourceUtil.loadClasspathResource("ORDERS05.txt"));
+            totalLineNumber = reader.getTotalLineNumber();
         } catch (IOException ex) {
             Logger.getLogger(LineReaderTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -45,48 +47,48 @@ public class LineReaderTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of getContent method, of class LineReader.
-     */
-//    @Test
-    public void testReadContent() {
-    }
-
     @Test
     public void testFindTag() {
-        findTag(TagEnum.IDOC, 1, 549, 5808);
-        findTag(TagEnum.RECORD_SECTION, 1, 1, 547);
-//        findTag(TagEnum.GROUP, 0, 1025, 1416);//G1
-//        findTag(TagEnum.GROUP, 66, 1629, 1707);//G2
-        findTag(TagEnum.GROUP, 1709, 1709, 4569);//G3
-        findTag(TagEnum.GROUP, 2429, 2429, 2595);//G4
-//        findTag(TagEnum.GROUP, 115, 2659, 3050);//G5
-//        findTag(TagEnum.GROUP, 129, 3124, 3271);//G6
-//        findTag(TagEnum.GROUP, 134, 3177, 3270);//G7
-//        findTag(TagEnum.GROUP, 157, 3387, 3449);//G8
-//        findTag(TagEnum.GROUP, 167, 3450, 4567);//G9
-//        findTag(TagEnum.GROUP, 212, 4520, 4566);//G10
-//        findTag(TagEnum.GROUP, 224, 4569, 4966);//G11
-//        findTag(TagEnum.GROUP, 246, 4967, 5765);//G12
+        Line[] result1 = reader.findTag(TagEnum.IDOC);
+        Line[] result2 = reader.findTag(TagEnum.IDOC, 1);
+        Line[] result3 = reader.findTag(TagEnum.IDOC, 549, 5808);
+        assertEquals(549, result1[0].getLineNumber());
+        assertEquals(549, result2[0].getLineNumber());
+        assertEquals(549, result3[0].getLineNumber());
+        assertEquals(5808, result1[1].getLineNumber());
+        assertEquals(5808, result2[1].getLineNumber());
+        assertEquals(5808, result3[1].getLineNumber());
     }
 
-    public void findTag(TagEnum tag, int fromIndex, int exp1, int exp2) {
-        Line[] result = reader.findTag(tag, fromIndex);
-        System.out.println("s"+result[0]);
-        System.out.println("e"+result[1]);
-        assertEquals(exp1, result[0].getLineNumber());
-        assertEquals(exp2, result[1].getLineNumber());
-    }
-    
-//    @Test
-    public void testGenerateStructure() throws IOException{
-        reader.generateStructure();
-    }
     @Test
-    public void testReadTagContent(){
-        List<Line> lines = reader.readTagContent(TagEnum.CONTROL_RECORD);
-        for (Line line : lines) {
-            System.out.println(line);
-        }
+    public void testFindTags() {
+        List<Line[]> result = reader.findTags(TagEnum.GROUP, 1, 5809);
+        assertEquals(1026, result.get(0)[0].getLineNumber());//G1
+        assertEquals(1417, result.get(0)[1].getLineNumber());//G1
+        assertEquals(1709, result.get(2)[0].getLineNumber());//G3
+        assertEquals(4569, result.get(2)[1].getLineNumber());//G3
     }
+
+    @Test
+    public void testFindStructureIndexByLineNumber() {
+        assertEquals(0, reader.findStructureIndexByLineNumber(0, true));
+        assertEquals(0, reader.findStructureIndexByLineNumber(1, true));
+        assertEquals(1, reader.findStructureIndexByLineNumber(2, true));
+        assertEquals(2, reader.findStructureIndexByLineNumber(4, true));
+        assertEquals(3, reader.findStructureIndexByLineNumber(4, false));
+        assertEquals(6, reader.findStructureIndexByLineNumber(349, true));
+        assertEquals(7, reader.findStructureIndexByLineNumber(349, false));
+        assertEquals(269, reader.findStructureIndexByLineNumber(5809, false));
+        assertEquals(269, reader.findStructureIndexByLineNumber(5810, false));
+    }
+//    @Test
+//    public void testFindTags() {
+//        List<Line[]> results = reader.findTags(TagEnum.SEGMENT);
+//        System.out.println("segments number " + results.size());
+//        for (Line[] result : results) {
+//            System.out.println("start line : " + result[0]);
+//            System.out.println("end line : " + result[1]);
+//            System.out.println("");
+//        }
+//    }
 }

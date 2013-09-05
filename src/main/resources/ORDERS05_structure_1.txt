@@ -1,270 +1,270 @@
-0001     BEGIN_RECORD_SECTION                          
-0002     BEGIN_CONTROL_RECORD                          
-0003     BEGIN_FIELDS                                  
-0291     END_FIELDS                                    
-0292     END_CONTROL_RECORD                            
-0293     BEGIN_DATA_RECORD                             
-0294     BEGIN_FIELDS                                  
-0350     END_FIELDS                                    
-0351     END_DATA_RECORD                               
-0352     BEGIN_STATUS_RECORD                           
-0353     BEGIN_FIELDS                                  
-0545     END_FIELDS                                    
-0546     END_STATUS_RECORD                             
-0547     END_RECORD_SECTION                            
-0548     BEGIN_SEGMENT_SECTION                         
-0549     BEGIN_IDOC                            ORDERS05
-0550     BEGIN_SEGMENT                       E2EDK01005
-0556     BEGIN_FIELDS                                  
-0812     END_FIELDS                                    
-0813     END_SEGMENT                                   
-0814     BEGIN_SEGMENT                          E2EDK14
-0821     BEGIN_FIELDS                                  
-0837     END_FIELDS                                    
-0838     END_SEGMENT                                   
-0839     BEGIN_SEGMENT                          E2EDK03
-0846     BEGIN_FIELDS                                  
-0870     END_FIELDS                                    
-0871     END_SEGMENT                                   
-0872     BEGIN_SEGMENT                       E2EDK04001
-0879     BEGIN_FIELDS                                  
-0919     END_FIELDS                                    
-0920     END_SEGMENT                                   
-0921     BEGIN_SEGMENT                       E2EDK05001
-0928     BEGIN_FIELDS                                  
-1024     END_FIELDS                                    
-1025     END_SEGMENT                                   
-1026     BEGIN_GROUP                                  1
-1031     BEGIN_SEGMENT                       E2EDKA1003
-1038     BEGIN_FIELDS                                  
-1390     END_FIELDS                                    
-1391     END_SEGMENT                                   
-1392     BEGIN_SEGMENT                          E2EDKA3
-1399     BEGIN_FIELDS                                  
-1415     END_FIELDS                                    
-1416     END_SEGMENT                                   
-1417     END_GROUP                                     
-1418     BEGIN_SEGMENT                          E2EDK02
-1425     BEGIN_FIELDS                                  
-1465     END_FIELDS                                    
-1466     END_SEGMENT                                   
-1467     BEGIN_SEGMENT                          E2EDK17
-1474     BEGIN_FIELDS                                  
-1498     END_FIELDS                                    
-1499     END_SEGMENT                                   
-1500     BEGIN_SEGMENT                          E2EDK18
-1507     BEGIN_FIELDS                                  
-1539     END_FIELDS                                    
-1540     END_SEGMENT                                   
-1541     BEGIN_SEGMENT                       E2EDK35000
-1548     BEGIN_FIELDS                                  
-1572     END_FIELDS                                    
-1573     END_SEGMENT                                   
-1574     BEGIN_SEGMENT                       E2EDK36000
-1580     BEGIN_FIELDS                                  
-1628     END_FIELDS                                    
-1629     END_SEGMENT                                   
-1630     BEGIN_GROUP                                  2
-1635     BEGIN_SEGMENT                       E2EDKT1002
-1642     BEGIN_FIELDS                                  
-1682     END_FIELDS                                    
-1683     END_SEGMENT                                   
-1684     BEGIN_SEGMENT                       E2EDKT2001
-1690     BEGIN_FIELDS                                  
-1706     END_FIELDS                                    
-1707     END_SEGMENT                                   
-1708     END_GROUP                                     
-1709     BEGIN_GROUP                                  3
-1714     BEGIN_SEGMENT                       E2EDP01008
-1720     BEGIN_FIELDS                                  
-2136     END_FIELDS                                    
-2137     END_SEGMENT                                   
-2138     BEGIN_SEGMENT                       E2EDP02001
-2145     BEGIN_FIELDS                                  
-2201     END_FIELDS                                    
-2202     END_SEGMENT                                   
-2203     BEGIN_SEGMENT                          E2CUREF
-2209     BEGIN_FIELDS                                  
-2233     END_FIELDS                                    
-2234     END_SEGMENT                                   
-2235     BEGIN_SEGMENT                       E2ADDI1001
-2241     BEGIN_FIELDS                                  
-2345     END_FIELDS                                    
-2346     END_SEGMENT                                   
-2347     BEGIN_SEGMENT                          E2EDP03
-2354     BEGIN_FIELDS                                  
-2378     END_FIELDS                                    
-2379     END_SEGMENT                                   
-2380     BEGIN_SEGMENT                       E2EDP04001
-2387     BEGIN_FIELDS                                  
-2427     END_FIELDS                                    
-2428     END_SEGMENT                                   
-2429     BEGIN_GROUP                                  4
-2434     BEGIN_SEGMENT                       E2EDP05002
-2441     BEGIN_FIELDS                                  
-2569     END_FIELDS                                    
-2570     END_SEGMENT                                   
-2571     BEGIN_SEGMENT                       E2EDPS5000
-2577     BEGIN_FIELDS                                  
-2593     END_FIELDS                                    
-2594     END_SEGMENT                                   
-2595     END_GROUP                                     
-2596     BEGIN_SEGMENT                       E2EDP20001
-2602     BEGIN_FIELDS                                  
-2658     END_FIELDS                                    
-2659     END_SEGMENT                                   
-2660     BEGIN_GROUP                                  5
-2665     BEGIN_SEGMENT                       E2EDPA1003
-2672     BEGIN_FIELDS                                  
-3024     END_FIELDS                                    
-3025     END_SEGMENT                                   
-3026     BEGIN_SEGMENT                          E2EDPA3
-3033     BEGIN_FIELDS                                  
-3049     END_FIELDS                                    
-3050     END_SEGMENT                                   
-3051     END_GROUP                                     
-3052     BEGIN_SEGMENT                       E2EDP19002
-3059     BEGIN_FIELDS                                  
-3123     END_FIELDS                                    
-3124     END_SEGMENT                                   
-3125     BEGIN_GROUP                                  6
-3130     BEGIN_SEGMENT                       E2EDPAD001
-3136     BEGIN_FIELDS                                  
-3176     END_FIELDS                                    
-3177     END_SEGMENT                                   
-3178     BEGIN_GROUP                                  7
-3183     BEGIN_SEGMENT                       E2TXTH1001
-3189     BEGIN_FIELDS                                  
-3245     END_FIELDS                                    
-3246     END_SEGMENT                                   
-3247     BEGIN_SEGMENT                          E2TXTP1
-3253     BEGIN_FIELDS                                  
-3269     END_FIELDS                                    
-3270     END_SEGMENT                                   
-3271     END_GROUP                                     
-3272     END_GROUP                                     
-3273     BEGIN_SEGMENT                       E2EDP17001
-3280     BEGIN_FIELDS                                  
-3312     END_FIELDS                                    
-3313     END_SEGMENT                                   
-3314     BEGIN_SEGMENT                       E2EDP18001
-3321     BEGIN_FIELDS                                  
-3353     END_FIELDS                                    
-3354     END_SEGMENT                                   
-3355     BEGIN_SEGMENT                       E2EDP35000
-3362     BEGIN_FIELDS                                  
-3386     END_FIELDS                                    
-3387     END_SEGMENT                                   
-3388     BEGIN_GROUP                                  8
-3393     BEGIN_SEGMENT                       E2EDPT1001
-3400     BEGIN_FIELDS                                  
-3424     END_FIELDS                                    
-3425     END_SEGMENT                                   
-3426     BEGIN_SEGMENT                       E2EDPT2001
-3432     BEGIN_FIELDS                                  
-3448     END_FIELDS                                    
-3449     END_SEGMENT                                   
-3450     END_GROUP                                     
-3451     BEGIN_GROUP                                  9
-3456     BEGIN_SEGMENT                          E2EDC01
-3463     BEGIN_FIELDS                                  
-3767     END_FIELDS                                    
-3768     END_SEGMENT                                   
-3769     BEGIN_SEGMENT                          E2EDC02
-3776     BEGIN_FIELDS                                  
-3816     END_FIELDS                                    
-3817     END_SEGMENT                                   
-3818     BEGIN_SEGMENT                          E2EDC03
-3825     BEGIN_FIELDS                                  
-3849     END_FIELDS                                    
-3850     END_SEGMENT                                   
-3851     BEGIN_SEGMENT                          E2EDC04
-3858     BEGIN_FIELDS                                  
-3890     END_FIELDS                                    
-3891     END_SEGMENT                                   
-3892     BEGIN_SEGMENT                          E2EDC05
-3899     BEGIN_FIELDS                                  
-4003     END_FIELDS                                    
-4004     END_SEGMENT                                   
-4005     BEGIN_SEGMENT                       E2EDC06000
-4011     BEGIN_FIELDS                                  
-4059     END_FIELDS                                    
-4060     END_SEGMENT                                   
-4061     BEGIN_SEGMENT                       E2EDC07000
-4067     BEGIN_FIELDS                                  
-4099     END_FIELDS                                    
-4100     END_SEGMENT                                   
-4101     BEGIN_SEGMENT                          E2EDCA1
-4108     BEGIN_FIELDS                                  
-4420     END_FIELDS                                    
-4421     END_SEGMENT                                   
-4422     BEGIN_SEGMENT                          E2EDC19
-4429     BEGIN_FIELDS                                  
-4453     END_FIELDS                                    
-4454     END_SEGMENT                                   
-4455     BEGIN_SEGMENT                          E2EDC17
-4462     BEGIN_FIELDS                                  
-4486     END_FIELDS                                    
-4487     END_SEGMENT                                   
-4488     BEGIN_SEGMENT                          E2EDC18
-4495     BEGIN_FIELDS                                  
-4519     END_FIELDS                                    
-4520     END_SEGMENT                                   
-4521     BEGIN_GROUP                                 10
-4526     BEGIN_SEGMENT                          E2EDCT1
-4533     BEGIN_FIELDS                                  
-4549     END_FIELDS                                    
-4550     END_SEGMENT                                   
-4551     BEGIN_SEGMENT                          E2EDCT2
-4557     BEGIN_FIELDS                                  
-4565     END_FIELDS                                    
-4566     END_SEGMENT                                   
-4567     END_GROUP                                     
-4568     END_GROUP                                     
-4569     END_GROUP                                     
-4570     BEGIN_GROUP                                 11
-4575     BEGIN_SEGMENT                       E2CUCFG003
-4581     BEGIN_FIELDS                                  
-4685     END_FIELDS                                    
-4686     END_SEGMENT                                   
-4687     BEGIN_SEGMENT                       E2CUINS002
-4693     BEGIN_FIELDS                                  
-4797     END_FIELDS                                    
-4798     END_SEGMENT                                   
-4799     BEGIN_SEGMENT                       E2CUPRT002
-4805     BEGIN_FIELDS                                  
-4877     END_FIELDS                                    
-4878     END_SEGMENT                                   
-4879     BEGIN_SEGMENT                       E2CUVAL002
-4885     BEGIN_FIELDS                                  
-4949     END_FIELDS                                    
-4950     END_SEGMENT                                   
-4951     BEGIN_SEGMENT                       E2CUBLB000
-4957     BEGIN_FIELDS                                  
-4965     END_FIELDS                                    
-4966     END_SEGMENT                                   
-4967     END_GROUP                                     
-4968     BEGIN_GROUP                                 12
-4973     BEGIN_SEGMENT                       E2EDL37005
-4979     BEGIN_FIELDS                                  
-5467     END_FIELDS                                    
-5468     END_SEGMENT                                   
-5469     BEGIN_SEGMENT                       E2EDL39000
-5475     BEGIN_FIELDS                                  
-5491     END_FIELDS                                    
-5492     END_SEGMENT                                   
-5493     BEGIN_SEGMENT                          E2EDL38
-5499     BEGIN_FIELDS                                  
-5563     END_FIELDS                                    
-5564     END_SEGMENT                                   
-5565     BEGIN_SEGMENT                       E2EDL44004
-5572     BEGIN_FIELDS                                  
-5764     END_FIELDS                                    
-5765     END_SEGMENT                                   
-5766     END_GROUP                                     
-5767     BEGIN_SEGMENT                          E2EDS01
-5774     BEGIN_FIELDS                                  
-5806     END_FIELDS                                    
-5807     END_SEGMENT                                   
-5808     END_IDOC                                      
-5809     END_SEGMENT_SECTION                           
+0000     0001     BEGIN_RECORD_SECTION                          
+0001     0002     BEGIN_CONTROL_RECORD                          
+0002     0003     BEGIN_FIELDS                                  
+0003     0291     END_FIELDS                                    
+0004     0292     END_CONTROL_RECORD                            
+0005     0293     BEGIN_DATA_RECORD                             
+0006     0294     BEGIN_FIELDS                                  
+0007     0350     END_FIELDS                                    
+0008     0351     END_DATA_RECORD                               
+0009     0352     BEGIN_STATUS_RECORD                           
+0010     0353     BEGIN_FIELDS                                  
+0011     0545     END_FIELDS                                    
+0012     0546     END_STATUS_RECORD                             
+0013     0547     END_RECORD_SECTION                            
+0014     0548     BEGIN_SEGMENT_SECTION                         
+0015     0549     BEGIN_IDOC                            ORDERS05
+0016     0550     BEGIN_SEGMENT                       E2EDK01005
+0017     0556     BEGIN_FIELDS                                  
+0018     0812     END_FIELDS                                    
+0019     0813     END_SEGMENT                                   
+0020     0814     BEGIN_SEGMENT                          E2EDK14
+0021     0821     BEGIN_FIELDS                                  
+0022     0837     END_FIELDS                                    
+0023     0838     END_SEGMENT                                   
+0024     0839     BEGIN_SEGMENT                          E2EDK03
+0025     0846     BEGIN_FIELDS                                  
+0026     0870     END_FIELDS                                    
+0027     0871     END_SEGMENT                                   
+0028     0872     BEGIN_SEGMENT                       E2EDK04001
+0029     0879     BEGIN_FIELDS                                  
+0030     0919     END_FIELDS                                    
+0031     0920     END_SEGMENT                                   
+0032     0921     BEGIN_SEGMENT                       E2EDK05001
+0033     0928     BEGIN_FIELDS                                  
+0034     1024     END_FIELDS                                    
+0035     1025     END_SEGMENT                                   
+0036     1026     BEGIN_GROUP                                  1
+0037     1031     BEGIN_SEGMENT                       E2EDKA1003
+0038     1038     BEGIN_FIELDS                                  
+0039     1390     END_FIELDS                                    
+0040     1391     END_SEGMENT                                   
+0041     1392     BEGIN_SEGMENT                          E2EDKA3
+0042     1399     BEGIN_FIELDS                                  
+0043     1415     END_FIELDS                                    
+0044     1416     END_SEGMENT                                   
+0045     1417     END_GROUP                                     
+0046     1418     BEGIN_SEGMENT                          E2EDK02
+0047     1425     BEGIN_FIELDS                                  
+0048     1465     END_FIELDS                                    
+0049     1466     END_SEGMENT                                   
+0050     1467     BEGIN_SEGMENT                          E2EDK17
+0051     1474     BEGIN_FIELDS                                  
+0052     1498     END_FIELDS                                    
+0053     1499     END_SEGMENT                                   
+0054     1500     BEGIN_SEGMENT                          E2EDK18
+0055     1507     BEGIN_FIELDS                                  
+0056     1539     END_FIELDS                                    
+0057     1540     END_SEGMENT                                   
+0058     1541     BEGIN_SEGMENT                       E2EDK35000
+0059     1548     BEGIN_FIELDS                                  
+0060     1572     END_FIELDS                                    
+0061     1573     END_SEGMENT                                   
+0062     1574     BEGIN_SEGMENT                       E2EDK36000
+0063     1580     BEGIN_FIELDS                                  
+0064     1628     END_FIELDS                                    
+0065     1629     END_SEGMENT                                   
+0066     1630     BEGIN_GROUP                                  2
+0067     1635     BEGIN_SEGMENT                       E2EDKT1002
+0068     1642     BEGIN_FIELDS                                  
+0069     1682     END_FIELDS                                    
+0070     1683     END_SEGMENT                                   
+0071     1684     BEGIN_SEGMENT                       E2EDKT2001
+0072     1690     BEGIN_FIELDS                                  
+0073     1706     END_FIELDS                                    
+0074     1707     END_SEGMENT                                   
+0075     1708     END_GROUP                                     
+0076     1709     BEGIN_GROUP                                  3
+0077     1714     BEGIN_SEGMENT                       E2EDP01008
+0078     1720     BEGIN_FIELDS                                  
+0079     2136     END_FIELDS                                    
+0080     2137     END_SEGMENT                                   
+0081     2138     BEGIN_SEGMENT                       E2EDP02001
+0082     2145     BEGIN_FIELDS                                  
+0083     2201     END_FIELDS                                    
+0084     2202     END_SEGMENT                                   
+0085     2203     BEGIN_SEGMENT                          E2CUREF
+0086     2209     BEGIN_FIELDS                                  
+0087     2233     END_FIELDS                                    
+0088     2234     END_SEGMENT                                   
+0089     2235     BEGIN_SEGMENT                       E2ADDI1001
+0090     2241     BEGIN_FIELDS                                  
+0091     2345     END_FIELDS                                    
+0092     2346     END_SEGMENT                                   
+0093     2347     BEGIN_SEGMENT                          E2EDP03
+0094     2354     BEGIN_FIELDS                                  
+0095     2378     END_FIELDS                                    
+0096     2379     END_SEGMENT                                   
+0097     2380     BEGIN_SEGMENT                       E2EDP04001
+0098     2387     BEGIN_FIELDS                                  
+0099     2427     END_FIELDS                                    
+0100     2428     END_SEGMENT                                   
+0101     2429     BEGIN_GROUP                                  4
+0102     2434     BEGIN_SEGMENT                       E2EDP05002
+0103     2441     BEGIN_FIELDS                                  
+0104     2569     END_FIELDS                                    
+0105     2570     END_SEGMENT                                   
+0106     2571     BEGIN_SEGMENT                       E2EDPS5000
+0107     2577     BEGIN_FIELDS                                  
+0108     2593     END_FIELDS                                    
+0109     2594     END_SEGMENT                                   
+0110     2595     END_GROUP                                     
+0111     2596     BEGIN_SEGMENT                       E2EDP20001
+0112     2602     BEGIN_FIELDS                                  
+0113     2658     END_FIELDS                                    
+0114     2659     END_SEGMENT                                   
+0115     2660     BEGIN_GROUP                                  5
+0116     2665     BEGIN_SEGMENT                       E2EDPA1003
+0117     2672     BEGIN_FIELDS                                  
+0118     3024     END_FIELDS                                    
+0119     3025     END_SEGMENT                                   
+0120     3026     BEGIN_SEGMENT                          E2EDPA3
+0121     3033     BEGIN_FIELDS                                  
+0122     3049     END_FIELDS                                    
+0123     3050     END_SEGMENT                                   
+0124     3051     END_GROUP                                     
+0125     3052     BEGIN_SEGMENT                       E2EDP19002
+0126     3059     BEGIN_FIELDS                                  
+0127     3123     END_FIELDS                                    
+0128     3124     END_SEGMENT                                   
+0129     3125     BEGIN_GROUP                                  6
+0130     3130     BEGIN_SEGMENT                       E2EDPAD001
+0131     3136     BEGIN_FIELDS                                  
+0132     3176     END_FIELDS                                    
+0133     3177     END_SEGMENT                                   
+0134     3178     BEGIN_GROUP                                  7
+0135     3183     BEGIN_SEGMENT                       E2TXTH1001
+0136     3189     BEGIN_FIELDS                                  
+0137     3245     END_FIELDS                                    
+0138     3246     END_SEGMENT                                   
+0139     3247     BEGIN_SEGMENT                          E2TXTP1
+0140     3253     BEGIN_FIELDS                                  
+0141     3269     END_FIELDS                                    
+0142     3270     END_SEGMENT                                   
+0143     3271     END_GROUP                                     
+0144     3272     END_GROUP                                     
+0145     3273     BEGIN_SEGMENT                       E2EDP17001
+0146     3280     BEGIN_FIELDS                                  
+0147     3312     END_FIELDS                                    
+0148     3313     END_SEGMENT                                   
+0149     3314     BEGIN_SEGMENT                       E2EDP18001
+0150     3321     BEGIN_FIELDS                                  
+0151     3353     END_FIELDS                                    
+0152     3354     END_SEGMENT                                   
+0153     3355     BEGIN_SEGMENT                       E2EDP35000
+0154     3362     BEGIN_FIELDS                                  
+0155     3386     END_FIELDS                                    
+0156     3387     END_SEGMENT                                   
+0157     3388     BEGIN_GROUP                                  8
+0158     3393     BEGIN_SEGMENT                       E2EDPT1001
+0159     3400     BEGIN_FIELDS                                  
+0160     3424     END_FIELDS                                    
+0161     3425     END_SEGMENT                                   
+0162     3426     BEGIN_SEGMENT                       E2EDPT2001
+0163     3432     BEGIN_FIELDS                                  
+0164     3448     END_FIELDS                                    
+0165     3449     END_SEGMENT                                   
+0166     3450     END_GROUP                                     
+0167     3451     BEGIN_GROUP                                  9
+0168     3456     BEGIN_SEGMENT                          E2EDC01
+0169     3463     BEGIN_FIELDS                                  
+0170     3767     END_FIELDS                                    
+0171     3768     END_SEGMENT                                   
+0172     3769     BEGIN_SEGMENT                          E2EDC02
+0173     3776     BEGIN_FIELDS                                  
+0174     3816     END_FIELDS                                    
+0175     3817     END_SEGMENT                                   
+0176     3818     BEGIN_SEGMENT                          E2EDC03
+0177     3825     BEGIN_FIELDS                                  
+0178     3849     END_FIELDS                                    
+0179     3850     END_SEGMENT                                   
+0180     3851     BEGIN_SEGMENT                          E2EDC04
+0181     3858     BEGIN_FIELDS                                  
+0182     3890     END_FIELDS                                    
+0183     3891     END_SEGMENT                                   
+0184     3892     BEGIN_SEGMENT                          E2EDC05
+0185     3899     BEGIN_FIELDS                                  
+0186     4003     END_FIELDS                                    
+0187     4004     END_SEGMENT                                   
+0188     4005     BEGIN_SEGMENT                       E2EDC06000
+0189     4011     BEGIN_FIELDS                                  
+0190     4059     END_FIELDS                                    
+0191     4060     END_SEGMENT                                   
+0192     4061     BEGIN_SEGMENT                       E2EDC07000
+0193     4067     BEGIN_FIELDS                                  
+0194     4099     END_FIELDS                                    
+0195     4100     END_SEGMENT                                   
+0196     4101     BEGIN_SEGMENT                          E2EDCA1
+0197     4108     BEGIN_FIELDS                                  
+0198     4420     END_FIELDS                                    
+0199     4421     END_SEGMENT                                   
+0200     4422     BEGIN_SEGMENT                          E2EDC19
+0201     4429     BEGIN_FIELDS                                  
+0202     4453     END_FIELDS                                    
+0203     4454     END_SEGMENT                                   
+0204     4455     BEGIN_SEGMENT                          E2EDC17
+0205     4462     BEGIN_FIELDS                                  
+0206     4486     END_FIELDS                                    
+0207     4487     END_SEGMENT                                   
+0208     4488     BEGIN_SEGMENT                          E2EDC18
+0209     4495     BEGIN_FIELDS                                  
+0210     4519     END_FIELDS                                    
+0211     4520     END_SEGMENT                                   
+0212     4521     BEGIN_GROUP                                 10
+0213     4526     BEGIN_SEGMENT                          E2EDCT1
+0214     4533     BEGIN_FIELDS                                  
+0215     4549     END_FIELDS                                    
+0216     4550     END_SEGMENT                                   
+0217     4551     BEGIN_SEGMENT                          E2EDCT2
+0218     4557     BEGIN_FIELDS                                  
+0219     4565     END_FIELDS                                    
+0220     4566     END_SEGMENT                                   
+0221     4567     END_GROUP                                     
+0222     4568     END_GROUP                                     
+0223     4569     END_GROUP                                     
+0224     4570     BEGIN_GROUP                                 11
+0225     4575     BEGIN_SEGMENT                       E2CUCFG003
+0226     4581     BEGIN_FIELDS                                  
+0227     4685     END_FIELDS                                    
+0228     4686     END_SEGMENT                                   
+0229     4687     BEGIN_SEGMENT                       E2CUINS002
+0230     4693     BEGIN_FIELDS                                  
+0231     4797     END_FIELDS                                    
+0232     4798     END_SEGMENT                                   
+0233     4799     BEGIN_SEGMENT                       E2CUPRT002
+0234     4805     BEGIN_FIELDS                                  
+0235     4877     END_FIELDS                                    
+0236     4878     END_SEGMENT                                   
+0237     4879     BEGIN_SEGMENT                       E2CUVAL002
+0238     4885     BEGIN_FIELDS                                  
+0239     4949     END_FIELDS                                    
+0240     4950     END_SEGMENT                                   
+0241     4951     BEGIN_SEGMENT                       E2CUBLB000
+0242     4957     BEGIN_FIELDS                                  
+0243     4965     END_FIELDS                                    
+0244     4966     END_SEGMENT                                   
+0245     4967     END_GROUP                                     
+0246     4968     BEGIN_GROUP                                 12
+0247     4973     BEGIN_SEGMENT                       E2EDL37005
+0248     4979     BEGIN_FIELDS                                  
+0249     5467     END_FIELDS                                    
+0250     5468     END_SEGMENT                                   
+0251     5469     BEGIN_SEGMENT                       E2EDL39000
+0252     5475     BEGIN_FIELDS                                  
+0253     5491     END_FIELDS                                    
+0254     5492     END_SEGMENT                                   
+0255     5493     BEGIN_SEGMENT                          E2EDL38
+0256     5499     BEGIN_FIELDS                                  
+0257     5563     END_FIELDS                                    
+0258     5564     END_SEGMENT                                   
+0259     5565     BEGIN_SEGMENT                       E2EDL44004
+0260     5572     BEGIN_FIELDS                                  
+0261     5764     END_FIELDS                                    
+0262     5765     END_SEGMENT                                   
+0263     5766     END_GROUP                                     
+0264     5767     BEGIN_SEGMENT                          E2EDS01
+0265     5774     BEGIN_FIELDS                                  
+0266     5806     END_FIELDS                                    
+0267     5807     END_SEGMENT                                   
+0268     5808     END_IDOC                                      
+0269     5809     END_SEGMENT_SECTION                           

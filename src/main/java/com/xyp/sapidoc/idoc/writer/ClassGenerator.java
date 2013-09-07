@@ -1,7 +1,10 @@
 package com.xyp.sapidoc.idoc.writer;
 
 import com.xyp.sapidoc.idoc.annotation.IdocField;
+import com.xyp.sapidoc.idoc.annotation.IdocSegment;
 import com.xyp.sapidoc.idoc.attribute.IdocFieldProperty;
+import com.xyp.sapidoc.idoc.attribute.IdocSegmentProperty;
+import com.xyp.sapidoc.idoc.enumeration.StatusEnum;
 import com.xyp.sapidoc.idoc.enumeration.TagEnum;
 import com.xyp.sapidoc.idoc.reader.IDoc;
 import com.xyp.sapidoc.idoc.reader.Line;
@@ -118,16 +121,63 @@ public class ClassGenerator {
         int fromLine = idoc.getStartLine().getLineNumber();
         int endLine = idoc.getEndLine().getLineNumber();
         List<Line[]> segments = reader.findTags(TagEnum.SEGMENT, fromLine, endLine);
-        int i = 0;
         for (Line[] segment : segments) {
-            Line[] fields = reader.findTag(TagEnum.FIELDS, segment[0].getLineNumber(), segment[1].getLineNumber());
-            List<Line> fieldsContent = reader.readLine(fields[0], fields[1]);
-            List<IdocFieldProperty> _fields = parseIdocFields(fieldsContent);
-            String className = reader.readLine(new Line(segment[0].getLineNumber() + 1)).getLineValue();
-            writeClass(className, pkgName, targetDir, _fields, imports);
-            i++;
+            IdocSegmentProperty _segment = parseSegment(segment);
+
+            ClassWriter classWriter = new ClassWriter(_segment.getType(), pkgName, targetDir);
+            classWriter.addAnnotation(IdocSegment.class, _segment.getClassAnnotation());
+            classWriter.addFields(_segment.getFields());
+            classWriter.addImports(_segment.getImportedClass());
+            classWriter.writerClass();
         }
-        System.out.println(i);
+    }
+
+    private IdocSegmentProperty parseSegment(Line[] segment) throws Exception {
+        Line[] field = reader.findTag(TagEnum.FIELDS, segment[0], segment[1]);
+        List<Line> fieldsContent = reader.readLine(field[0], field[1]);
+        List<IdocFieldProperty> fields = parseIdocFields(fieldsContent);
+        
+        List<Line> segmentHeader = reader.readLine(segment[0].getLineNumber(), field[0].getLineNumber() - 1);
+
+        IdocSegmentProperty _segment = new IdocSegmentProperty();
+        _segment.setFields(fields);
+        for (Line line : segmentHeader) {
+            if ("BEGIN_SEGMENT".equals(line.getLineTag())) {
+                _segment.setName(line.getLineValue());
+            }
+            String lineTag = line.getLineTag();
+            String lineValue = line.getLineValue();
+            switch (lineTag) {
+                case ("BEGIN_SEGMENT"):
+                    _segment.setName(lineValue);
+                    break;
+                case ("SEGMENTTYPE"):
+                    _segment.setType(lineValue);
+                    break;
+                case ("QUALIFIED"):
+                    _segment.setQualified(lineValue);
+                    break;
+                case ("LEVEL"):
+                    _segment.setLevel(Integer.parseInt(lineValue));
+                    break;
+                case ("STATUS"):
+                    lineValue = "".equals(lineValue) ? "DEFAULT" : lineValue;
+                    _segment.setStatus(StatusEnum.valueOf(lineValue));
+                    break;
+                case ("LOOPMIN"):
+                    _segment.setLoopMin(Integer.parseInt(lineValue));
+                    break;
+                case ("LOOPMAX"):
+                    Long temp = Long.valueOf(lineValue);
+                    if (temp > Integer.MAX_VALUE){
+                        _segment.setLoopMax(Integer.MAX_VALUE);
+                    } else {
+                        _segment.setLoopMax(temp.intValue());
+                    }
+                    break;
+            }
+        }
+        return _segment;
     }
 
     public static void main(String[] args) throws Exception {

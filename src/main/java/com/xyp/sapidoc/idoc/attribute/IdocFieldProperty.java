@@ -143,4 +143,9 @@ public class IdocFieldProperty {
                 .append("}");
         return sb.toString();
     }
+
+    @Override
+    public String toString() {
+        return "IdocFieldProperty{" + "name=" + name + ", text=" + text + ", type=" + type + ", length=" + length + ", field_pos=" + field_pos + ", character_first=" + character_first + ", character_last=" + character_last + '}';
+    }
 }

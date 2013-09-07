@@ -111,7 +111,12 @@ public class ClassWriter {
     }
 
     public void addAnnotation(Class<? extends Annotation> annotation) {
-        annotations.add("@" + annotation.getSimpleName());
+        String annotationStr = "@" + annotation.getSimpleName();
+        addAnnotation(annotation, annotationStr);
+    }
+
+    public void addAnnotation(Class<? extends Annotation> annotation, String annotationStr) {
+        annotations.add(annotationStr);
         addImport(annotation.getName());
     }
 

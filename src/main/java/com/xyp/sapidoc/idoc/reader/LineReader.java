@@ -96,7 +96,7 @@ public class LineReader {
         int toIndex = toLineNumber;
         return content.subList(fromIndex, toIndex);
     }
-    
+
     public Line readLine(Line line) {
         int index = line.getLineNumber() - 1;
         return content.get(index);
@@ -125,7 +125,7 @@ public class LineReader {
         int toLineNumber = getTotalLineNumber();
         return findTag(tag, fromLineNumber, toLineNumber);
     }
-    
+
     public Line[] findTag(TagEnum tag, int fromLineNumber) {
         int toLineNumber = getTotalLineNumber();
         return findTag(tag, fromLineNumber, toLineNumber);
@@ -136,7 +136,7 @@ public class LineReader {
         int toLineNumber = toLine.getLineNumber();
         return findTag(tag, fromLineNumber, toLineNumber);
     }
-    
+
     /**
      * @param tag
      * @param fromLineNumber
@@ -216,9 +216,18 @@ public class LineReader {
         return findTags(tag, fromLineNumber, toLineNumber);
     }
 
+    public List<Line[]> findTags(TagEnum tag, Line fromLine) {
+        int toLineNumber = getTotalLineNumber();
+        return findTags(tag, fromLine.getLineNumber(), toLineNumber);
+    }
+
     public List<Line[]> findTags(TagEnum tag, int fromLineNumber) {
         int toLineNumber = getTotalLineNumber();
         return findTags(tag, fromLineNumber, toLineNumber);
+    }
+
+    public List<Line[]> findTags(TagEnum tag, Line fromLine, Line toLine) {
+        return findTags(tag, fromLine.getLineNumber(), toLine.getLineNumber());
     }
 
     public List<Line[]> findTags(TagEnum tag, int fromLineNumber, int toLineNumber) {

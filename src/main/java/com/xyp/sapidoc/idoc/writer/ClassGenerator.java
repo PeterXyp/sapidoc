@@ -118,8 +118,8 @@ public class ClassGenerator {
     }
 
     private void parseSegments(IDoc idoc) throws Exception {
-        int fromLine = idoc.getStartLine().getLineNumber();
-        int endLine = idoc.getEndLine().getLineNumber();
+        Line fromLine = idoc.getStartLine();
+        Line endLine = idoc.getEndLine();
         List<Line[]> segments = reader.findTags(TagEnum.SEGMENT, fromLine, endLine);
         for (Line[] segment : segments) {
             IdocSegmentProperty _segment = parseSegment(segment);
